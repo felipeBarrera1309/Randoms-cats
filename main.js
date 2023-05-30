@@ -2,7 +2,7 @@ const API_KEY = 'live_86eNcoc9sFOy4nSDHZlAczskKAiJO4dbWvkg2nkl2TyP6Q9xXquSlv3E1i
 
 const API_URL = `https://api.thecatapi.com/v1/images/search?limit=3&api_key=${API_KEY}`;
 
-const button = document.querySelector('button')
+const button = document.querySelector('#button-reaload')
 
 button.addEventListener('click', reload)
 const imageOne = document.querySelector('#image1');
@@ -21,3 +21,14 @@ async function reload(){
 }
 
 reload()
+
+
+const buttonOne = document.querySelector('#button-one')
+const buttonTwo = document.querySelector('#button-two')
+const buttonThree = document.querySelector('#button-three')
+
+function saveImage(value){
+    console.log('Este es el valor: ', value);
+}
+
+buttonOne.onclick = saveImage

@@ -6,6 +6,9 @@
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+
+
 .parent-section section{
     background-image: url('https://cdn.domestika.org/c_fill,dpr_auto,f_auto,q_auto/v1598278083/content-items/005/583/726/Comp_3-original.gif?1598278083');
     background-repeat: no-repeat;
@@ -15,7 +18,21 @@
     background-position: 60% 40%;
     animation: moveImage 6s infinite;
     padding: 40px 80px;
+    overflow: auto;
+    min-width: 550px;
+    margin: 1px;
 }
+.parent-section section::-webkit-scrollbar{
+    width: 10px;
+    background-color: rgb(204, 202, 202);
+    border-radius: 10px;
+}
+
+.parent-section section::-webkit-scrollbar-thumb{
+    background-color: #784f21;
+    border-radius: 10px;
+}
+
 body{
     overflow: hidden;
 }
@@ -115,6 +132,7 @@ header{
     color: white;
     border-radius: 10px;
     opacity: 0;
+    transition: all .3s ease-out;
 }
 .parent-section section .parent-button button:hover::before{
     animation: colorButton 1s 1 linear alternate;
@@ -138,13 +156,14 @@ header{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    min-height: 400px;
     gap: 10px;
 }
 
 .parent-section section .parent-images img{
     border-radius: 10px;
-    width: 400px;
-    height: 380px;
+    width: clamp(100px, 40%, 350px);
+    height: clamp(100px, 20%, min(300px));
     object-fit: cover;
 }
 .parent-section section .button-reload{
@@ -158,4 +177,30 @@ header{
     border-radius: 10px;
     margin-bottom: 20px;
     font-size: 20px;
+    position: relative;
+    cursor: pointer;
+    background-color: #372d0d;
+}
+.parent-section section .button-reload  button p{
+    color: #995e1b;
+    font-weight: 700;
+    position: relative;
+    z-index: 3;
+}
+
+.parent-section section .button-reload  button::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #bf9e2f;
+    opacity: 0;
+    border-radius: 10px;
+    transition: .3s ease-out;
+}
+
+.parent-section section .button-reload  button:hover:before{
+    opacity: 1;
 }
