@@ -1,0 +1,161 @@
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.parent-section section{
+    background-image: url('https://cdn.domestika.org/c_fill,dpr_auto,f_auto,q_auto/v1598278083/content-items/005/583/726/Comp_3-original.gif?1598278083');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: calc(100vh - 60px);
+    width: 100vw;
+    background-position: 60% 40%;
+    animation: moveImage 6s infinite;
+    padding: 40px 80px;
+}
+body{
+    overflow: hidden;
+}
+
+@keyframes moveImage{
+    0% { background-position: 0 0; }
+    50% { background-position: 100% 80%; }
+    100% { background-position: 0 0; }
+}
+
+header{
+    min-height: 60px;
+    border-bottom: 3px solid #784f21;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9fa94;
+}
+.parent-section header h1{
+    font-size: clamp(30px, 4vw, 100px);
+    text-transform: uppercase;
+    font-weight: 800;
+    position: relative;
+    color: #e78e2a;
+}
+
+.parent-section header h1::before{
+    position: absolute;
+    content: attr(data-text);
+    height: 100%;
+    width: 0%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    color: #6f3b00;
+    animation:  moveColor 3s infinite linear alternate;
+}
+@keyframes moveColor{
+    to{
+        width: 100%;
+    }
+}
+
+.parent-section header h1::after{
+    content: '';
+    position: absolute;
+    height: clamp(20px, 70%, 100px);
+    width: 6px;
+    transform: translate(-60%, 20%);
+    background-color: #6f3b00;
+    animation: moveLine 3s infinite linear alternate;
+}
+@keyframes moveLine{
+    from{
+        left: 0;
+    }
+    to{
+        left: 100%;
+    }
+}
+
+.parent-section section .parent-button{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0px 100px;
+}
+
+.parent-section section .parent-button button{
+    height: 60px;
+    width: 170px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #f9fa94;
+    cursor: pointer;
+    position: relative;
+    padding: 0px 5px;
+}
+.parent-section section .parent-button button p{
+    color: #78450c;
+    position: relative;
+    z-index: 2;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.parent-section section .parent-button button::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #c4ab8e;
+    color: white;
+    border-radius: 10px;
+    opacity: 0;
+}
+.parent-section section .parent-button button:hover::before{
+    animation: colorButton 1s 1 linear alternate;
+    opacity: 1;
+}
+
+@keyframes colorButton {
+    0%{
+        width: 0%;
+        clip-path: polygon(0 0, 48% 0, 93% 100%, 0% 100%);
+        border-radius: 10px 0px 0px 10px;
+    }
+    to{
+        width: 100%;
+        border-radius: 10px;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+}
+
+.parent-section section .parent-images{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.parent-section section .parent-images img{
+    border-radius: 10px;
+    width: 400px;
+    height: 380px;
+    object-fit: cover;
+}
+.parent-section section .button-reload{
+    text-align: center;
+    margin-top: 10px;
+}
+.parent-section section .button-reload  button{
+    height: 60px;
+    width: 160px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
