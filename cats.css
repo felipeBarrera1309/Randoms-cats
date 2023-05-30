@@ -10,7 +10,7 @@
 
 
 .parent-section section{
-    background-image: url('https://cdn.domestika.org/c_fill,dpr_auto,f_auto,q_auto/v1598278083/content-items/005/583/726/Comp_3-original.gif?1598278083');
+    background-image: url('https://usagif.com/wp-content/uploads/gifs/cat-attack-86.gif');
     background-repeat: no-repeat;
     background-size: cover;
     height: calc(100vh - 60px);
@@ -29,7 +29,7 @@
 }
 
 .parent-section section::-webkit-scrollbar-thumb{
-    background-color: #784f21;
+    background-color: rgb(109, 98, 98);
     border-radius: 10px;
 }
 
@@ -45,11 +45,11 @@ body{
 
 header{
     min-height: 60px;
-    border-bottom: 3px solid #784f21;
+    border-bottom: 3px solid white;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f9fa94;
+    background-color: #c5c5c0;
 }
 .parent-section header h1{
     font-size: clamp(30px, 4vw, 100px);
@@ -203,4 +203,27 @@ header{
 
 .parent-section section .button-reload  button:hover:before{
     opacity: 1;
+}
+
+.parent-section section .parent-save{
+    max-height: 400px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.imagesSaved{
+    width: clamp(100px, 40%, 350px);
+    height: clamp(100px, 20%, min(300px));
+    object-fit: contain;
+    border-radius: 10px;
+}
+h2{
+    font-size: 50px;
+    text-align: center;
+    margin: 10px;
+    font-weight: 800;
+    color: rgb(0, 0, 0);
 }
