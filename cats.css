@@ -214,7 +214,7 @@ header{
     justify-content: space-between;
 }
 
-.imagesSaved{
+.parent-section section .parent-save img{
     width: clamp(100px, 40%, 350px);
     height: clamp(100px, 20%, min(300px));
     object-fit: contain;

@@ -12,25 +12,31 @@ const imageThree = document.querySelector('#image3');
 let urlOne = null
 let urlTwo = null
 let urlThree = null
+
+let data = {
+    0: { url: null },
+    1: { url: null },
+}
+
 let arrayCats = []
 
 async function reload(){
     const getData = await fetch(API_URL);
     const seeData = await getData.json();
-    const filterImages = seeData.filter((el, i) => i <= 2)
+    const filterImages = seeData.filter((el, i) => i <= 1)
     const [
-        { url: url1, id: idOne },
-        { url: url2, id: idTwo },
-        { url: url3, id: idThree }
+        { url: url1},
+        { url: url2},
     ] = filterImages
+    console.log(filterImages);
+    filterImages.forEach((el, i) => {
+        data[i].url = el.url
+    })
     urlOne = url1;
     urlTwo = url2;
-    urlThree = url3;
     arrayCats = filterImages
-    console.log(filterImages);
     imageOne.setAttribute('src', urlOne);
     imageTwo.setAttribute('src', urlTwo);
-    imageThree.setAttribute('src', urlThree);
     imageOne.src = seeData[0].url;
 }
 
@@ -39,28 +45,12 @@ reload()
 
 const buttonOne = document.querySelector('#button-one')
 const buttonTwo = document.querySelector('#button-two')
-const buttonThree = document.querySelector('#button-three')
 
 const parentDiv = document.querySelector('.parent-save')
 
 
 function saveImage(value){
-    let saveImages = []
-    if(value === 0){
-        saveImages.push(arrayCats.find((el, i) => i === value))
-    }
-    if(value === 1){
-        saveImages.push(arrayCats.find((el, i) => i === value))
-    }
-    if(value === 2){
-        saveImages.push(arrayCats.find((el, i) => i === value))
-    }
-    console.log(saveImages);
-    if(saveImages.length){
-        saveImages.forEach(el => {
-            parentDiv.innerHTML += `
-                <img src='${el.url}' class='imagesSaved' />
-            `
-        })
-    }
+    const elementImg = document.createElement('img')
+    elementImg.setAttribute('src', data[value].url)
+    parentDiv.appendChild(elementImg)
 }
