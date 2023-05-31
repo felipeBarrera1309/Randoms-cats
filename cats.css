@@ -58,6 +58,11 @@ header{
     position: relative;
     color: #e78e2a;
 }
+.parent-section header span{
+    color: red;
+    font-weight: 800;
+    font-size: clamp(30px, 4vw, 100px);
+}
 
 .parent-section header h1::before{
     position: absolute;

@@ -1,8 +1,14 @@
 const API_KEY = 'live_86eNcoc9sFOy4nSDHZlAczskKAiJO4dbWvkg2nkl2TyP6Q9xXquSlv3E1iIaI11n'
 
-const API_URL = `https://api.thecatapi.com/v1/images/search?limit=3&api_key=${API_KEY}`;
+const API_URL = `https://api.thecatapi.com/v1/images/search?limit=2&api_key=${API_KEY}`;
+
+const API_URL_POST = `https://api.thecatapi.com/v1/favourites?limit=2&api_key=${API_KEY}`
 
 const button = document.querySelector('#button-reaload')
+
+const spanError = document.querySelector('#error')
+
+const title = document.querySelector('#title-h1')
 
 button.addEventListener('click', reload)
 const imageOne = document.querySelector('#image1');
@@ -13,31 +19,33 @@ let urlOne = null
 let urlTwo = null
 let urlThree = null
 
-let data = {
-    0: { url: null },
-    1: { url: null },
+let datasIdis = {
+    0: { id: null },
+    1: { id: null },
 }
 
-let arrayCats = []
-
 async function reload(){
-    const getData = await fetch(API_URL);
-    const seeData = await getData.json();
-    const filterImages = seeData.filter((el, i) => i <= 1)
-    const [
-        { url: url1},
-        { url: url2},
-    ] = filterImages
-    console.log(filterImages);
-    filterImages.forEach((el, i) => {
-        data[i].url = el.url
-    })
-    urlOne = url1;
-    urlTwo = url2;
-    arrayCats = filterImages
-    imageOne.setAttribute('src', urlOne);
-    imageTwo.setAttribute('src', urlTwo);
-    imageOne.src = seeData[0].url;
+    try{
+        const getData = await fetch(API_URL);
+        const seeData = await getData.json();
+        urlOne = seeData[0].url
+        urlTwo = seeData[1].url;
+        seeData.forEach((el, i) => {
+            datasIdis[i] = el.id
+        })
+        imageOne.setAttribute('src', urlOne);
+        imageTwo.setAttribute('src', urlTwo);
+        imageOne.src = seeData[0].url;
+    }catch(error){
+        if(error.message){
+            title.style.display = 'none'
+            spanError.innerHTML = `
+                Hubo un error: ${error.messages}
+            `
+        }else{
+            title.style.display = 'block'
+        }
+    }
 }
 
 reload()
@@ -49,8 +57,19 @@ const buttonTwo = document.querySelector('#button-two')
 const parentDiv = document.querySelector('.parent-save')
 
 
-function saveImage(value){
-    const elementImg = document.createElement('img')
-    elementImg.setAttribute('src', data[value].url)
-    parentDiv.appendChild(elementImg)
+async function saveFavouritesCats(value){
+    try{
+        const res = await fetch(API_URL_POST, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: {
+                image_id: '31p'
+            }
+        })
+    }
+    catch(error){s
+        console.log(error.message);
+    }
 }

@@ -10,12 +10,13 @@
 <body>
     <section class="parent-section">
         <header>
-            <h1 data-text="cats">cats</h1>
+            <h1 id="title-h1" data-text="cats">cats</h1>
+            <span id="error"></span>
         </header>
         <section>
             <div class="parent-button">
-                <button onclick="saveImage(0)" id="button-one"><p>save image to favorite</p></button>
-                <button onclick="saveImage(1)" id="button-two"><p>save image to favorite</p></button>
+                <button onclick='saveFavouritesCats(0)' id="button-one"><p>save image to favorite</p></button>
+                <button onclick='saveFavouritesCats(1)' id="button-two"><p>save image to favorite</p></button>
             </div>
             <div class="parent-images">
                 <img id="image1" alt="Gatito aletorio" />
