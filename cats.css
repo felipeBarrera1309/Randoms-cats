@@ -7,14 +7,22 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body{
+    height: 100vh;
+}
 
+.parent-section{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
 .parent-section section{
     background-image: url('https://usagif.com/wp-content/uploads/gifs/cat-attack-86.gif');
     background-repeat: no-repeat;
     background-size: cover;
     height: calc(100vh - 60px);
-    width: 100vw;
+    width: 100%;
     background-position: 60% 40%;
     animation: moveImage 6s infinite;
     padding: 40px 80px;
@@ -211,7 +219,7 @@ header{
 }
 
 .parent-section section .parent-save{
-    max-height: 400px;
+    max-height: 600px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -220,15 +228,34 @@ header{
 }
 
 .parent-section section .parent-save img{
-    width: clamp(100px, 40%, 350px);
-    height: clamp(100px, 20%, min(300px));
+    width: 400px;
+    height: 400px;
     object-fit: contain;
     border-radius: 10px;
+}
+
+.parent-section section .parent-save button{
+    height: 60px;
+    padding: 0px 20px;
+    border: none;
+    border-radius: 10px;
+    color: #995e1b;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: 800;
+    background-color: #bf9e2f;
+}
+.parent-section section .parent-save article{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    align-items: center;
+    gap: 20px;
 }
 h2{
     font-size: 50px;
     text-align: center;
     margin: 10px;
     font-weight: 800;
-    color: rgb(0, 0, 0);
+    color: white;
 }
