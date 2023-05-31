@@ -24,6 +24,8 @@ let datasIdis = {
     1: { id: null },
 }
 
+let saveDataMichis = []
+
 async function reload(){
     try{
         const getData = await fetch(API_URL);
@@ -35,7 +37,10 @@ async function reload(){
         })
         imageOne.setAttribute('src', urlOne);
         imageTwo.setAttribute('src', urlTwo);
-        imageOne.src = seeData[0].url;
+        saveDataMichis = seeData
+        seeData.forEach((el, i) => {
+            datasIdis[i] = { id: el.id }
+        })
     }catch(error){
         if(error.message){
             title.style.display = 'none'
@@ -47,15 +52,25 @@ async function reload(){
         }
     }
 }
-
 reload()
-
-
 const buttonOne = document.querySelector('#button-one')
 const buttonTwo = document.querySelector('#button-two')
 
-const parentDiv = document.querySelector('.parent-save')
+function saveMichisFavourites(position){
+    const parentDiv = document.querySelector('.parent-save')
+    saveDataMichis.forEach(michi => {
+        const article = document.createElement('article');
+        const image = document.createElement('img')
+        const btn = document.createElement('button')
+        btn.textContent = 'Sacar el michi de favotiros'
+        image.setAttribute('src', michi.url)
+        parentDiv.appendChild(article)
+        article.appendChild(image)
+        article.appendChild(btn)
+        console.log(parentDiv);
+    })
 
+}
 
 async function saveFavouritesCats(value){
     try{
@@ -64,10 +79,12 @@ async function saveFavouritesCats(value){
             headers: {
                 'content-type': 'application/json'
             },
-            body: {
+            body: JSON.stringify({
                 image_id: '31p'
-            }
+            })
         })
+        const data = await res.json()
+        console.log('Datos satisfactoriamente recibidos: ', data);
     }
     catch(error){s
         console.log(error.message);
