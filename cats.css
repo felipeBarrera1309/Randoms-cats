@@ -232,6 +232,30 @@ header{
     height: 400px;
     object-fit: cover;
     border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    position: relative;
+}
+.parent-section section .parent-save img::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    background-image: linear-gradient(
+        to bottom,
+        transparent 10%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(0, 0, 0) 95%
+    );
+}
+
+.parent-section section .parent-save img:hover{
+    transform:
+        perspective(280px)
+        rotateX(20deg)
+        translateY(-30px)
+    ;
 }
 
 .parent-section section .parent-save button{
@@ -399,9 +423,4 @@ h2{
     height: 100px;
     width: 100px;
     z-index: 3;
-}
-
-.parent-section section .parent-save img:last-child:hover{
-    transform: rotateZ(360deg);
-    width: 50%;
 }
