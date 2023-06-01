@@ -131,6 +131,7 @@ header{
     z-index: 2;
     font-size: 15px;
     font-weight: 600;
+    position: relative;
 }
 
 .parent-section section .parent-button button::before{
@@ -141,19 +142,19 @@ header{
     top: 0;
     left: 0;
     bottom: 0;
-    background-color: #c4ab8e;
+    background-color: #96f1f0;
     color: white;
     border-radius: 10px;
     opacity: 0;
     transition: all .3s ease-out;
 }
 .parent-section section .parent-button button:hover::before{
-    animation: colorButton 1s 1 linear alternate;
+    animation: colorButton 1s 1 linear;
     opacity: 1;
 }
 
 @keyframes colorButton {
-    0%{
+    from{
         width: 0%;
         clip-path: polygon(0 0, 48% 0, 93% 100%, 0% 100%);
         border-radius: 10px 0px 0px 10px;
@@ -256,4 +257,50 @@ h2{
     margin: 10px;
     font-weight: 800;
     color: white;
+}
+
+.parent-section section .parent-save article .parentThings{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.parent-section section .parent-save article .parentThings .parentLines div:first-child{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    transition: .3s ease-in-out;
+    cursor: pointer;
+}
+.parent-section section .parent-save article .parentThings .parentLines div:first-child span{
+    width: 100%;
+    height: 7px;
+    background-color: white;
+    border-radius: 10px;
+}
+.parent-section section .parent-save article .parentThings .parentLines .moveAllLines span{
+    transition: 0.3s ease-in-out;
+}
+
+.parent-section section .parent-save article .parentThings .parentLines .moveAllLines span:first-child{
+    transform: rotateZ(45deg) translate(10px, 10px) ;
+    width: 80%;
+}
+
+.parent-section section .parent-save article .parentThings .parentLines .moveAllLines span:nth-child(2){
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+.parent-section section .parent-save article .parentThings .parentLines .moveAllLines span:last-child{
+    transform: rotateZ(-45deg) translate(13px, -15px);
+    width: 80%;
+}
+
+.parent-section section .parent-save article .deleteButton{
+    display: none;
 }

@@ -63,9 +63,17 @@ async function saveMichisFavourites(position){
     const article = document.createElement('article')
     const image = document.createElement('img')
     const btn = document.createElement('button')
+    const div = document.createElement('div')
+    const divTwo = document.createElement('div')
+    const divParentLines = document.createElement('div')
+    const spanOne = document.createElement('span')
+    const spanTwo = document.createElement('span')
+    const spanThree = document.createElement('span')
     btn.textContent = 'Favourtie cat <3'
     image.setAttribute('src', datasIdis[position].url)
     article.id = datasIdis[position].id
+    div.setAttribute('class', 'parentThings')
+    divTwo.setAttribute('class', 'parentLines')
 
 
     try{
@@ -77,27 +85,40 @@ async function saveMichisFavourites(position){
             })
         })
         const data = await request.json()
-        console.log('Esta es la data: ', data);
 
         parentDiv.appendChild(article)
         article.appendChild(image)
-        article.appendChild(btn)
+        article.appendChild(div)
+        div.appendChild(btn)
+        div.appendChild(divTwo)
+        // divTwo es el padre del div que es el padre de los span
+        divTwo.appendChild(divParentLines)
+        // divParentLines es el padre de los span
+        divParentLines.appendChild(spanOne)
+        divParentLines.appendChild(spanTwo)
+        divParentLines.appendChild(spanThree)
+
+        divTwo.addEventListener('mouseenter', () => {
+            divParentLines.setAttribute('class', 'moveAllLines')
+        })
+
+        divTwo.addEventListener('mouseleave', () => {
+            divParentLines.classList.remove('moveAllLines')
+        })
 
 
     }catch(error){
         console.log('Este es el error traido en pantalla: ', error.message);
     }
 
-    btn.onclick = () => deleteMichisFavourites(datasIdis[position].id);
+    btn.onclick = () => {
+        btn.setAttribute('class', 'deleteButton')
+        deleteMichisFavourites(datasIdis[position].id, position)
+    };
 
 }
 
-async function deleteMichisFavourites(id){
-
-    let newArticle = document?.querySelector(`#${id}`)
-    const getIdi = newArticle.getAttribute('id')
-    console.log('id obtenido: ', getIdi);
-
+async function deleteMichisFavourites(id, position){
     try{
         const res = await fetch(`${API_URL_DELETE+id}?api_key=${API_KEY}`, {
             method: 'DELETE',
