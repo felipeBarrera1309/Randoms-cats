@@ -224,7 +224,6 @@ header{
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: space-between;
 }
 
 .parent-section section .parent-save img{
@@ -248,7 +247,6 @@ header{
 .parent-section section .parent-save article{
     display: flex;
     flex-direction: column;
-    width: 45%;
     align-items: center;
     gap: 20px;
 }
