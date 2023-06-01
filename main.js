@@ -62,18 +62,20 @@ async function saveMichisFavourites(position){
     const parentDiv = document.querySelector('.parent-save')
     const article = document.createElement('article')
     const image = document.createElement('img')
-    const btn = document.createElement('button')
+    const imageHeard = document.createElement('img')
     const div = document.createElement('div')
     const divTwo = document.createElement('div')
     const divParentLines = document.createElement('div')
     const spanOne = document.createElement('span')
     const spanTwo = document.createElement('span')
     const spanThree = document.createElement('span')
-    btn.textContent = 'Favourtie cat <3'
+    imageHeard.setAttribute('class', 'corazonLGTBI')
+    imageHeard.src = 'https://3.bp.blogspot.com/-aLRVa2l51f4/WPAxwRMCR2I/AAAAAAAAJxU/0mRKWkmOSbY10GsUhKjDR3WRCt2x_FskgCLcB/s640/corazon-10.gif'
     image.setAttribute('src', datasIdis[position].url)
     article.id = datasIdis[position].id
     div.setAttribute('class', 'parentThings')
     divTwo.setAttribute('class', 'parentLines')
+    article.appendChild(imageHeard)
 
 
     try{
@@ -89,7 +91,6 @@ async function saveMichisFavourites(position){
         parentDiv.appendChild(article)
         article.appendChild(image)
         article.appendChild(div)
-        div.appendChild(btn)
         div.appendChild(divTwo)
         // divTwo es el padre del div que es el padre de los span
         divTwo.appendChild(divParentLines)
@@ -110,11 +111,6 @@ async function saveMichisFavourites(position){
     }catch(error){
         console.log('Este es el error traido en pantalla: ', error.message);
     }
-
-    btn.onclick = () => {
-        btn.setAttribute('class', 'deleteButton')
-        deleteMichisFavourites(datasIdis[position].id, position)
-    };
 
 }
 

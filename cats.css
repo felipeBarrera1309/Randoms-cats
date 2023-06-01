@@ -230,7 +230,7 @@ header{
 .parent-section section .parent-save img{
     width: 400px;
     height: 400px;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 10px;
 }
 
@@ -250,6 +250,7 @@ header{
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    position: relative;
 }
 h2{
     font-size: 50px;
@@ -271,10 +272,18 @@ h2{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 10px;
     transition: .3s ease-in-out;
     cursor: pointer;
+    position: relative;
+    z-index: 2;
 }
+.parent-section section .parent-save article .parentThings .parentLines{
+    transition: 0.3s ease-in-out;
+    position: relative;
+}
+
 .parent-section section .parent-save article .parentThings .parentLines div:first-child span{
     width: 100%;
     height: 7px;
@@ -286,21 +295,113 @@ h2{
 }
 
 .parent-section section .parent-save article .parentThings .parentLines .moveAllLines span:first-child{
-    transform: rotateZ(45deg) translate(10px, 10px) ;
+    transform: rotateZ(45deg) translate(10px, 10px);
     width: 80%;
+    animation: moveLineTop;
+    animation-duration: .6s;
+    animation-timing-function: linear;
 }
+
+@keyframes moveLineTop{
+    0%{
+        transform: translate(0px, 0px) rotateZ(180deg);
+        width: 30%;
+    }30%{
+        transform: translate(5px, 5px);
+        width: 40%;
+    }
+    50%{
+        transform: translate(10px, 10px);
+        width: 60%;
+    }
+    70%{
+        transform: translate(15px, 15px);
+        width: 80%;
+    }
+    90%{
+        transform: translate(20px, 20px);
+        width: 100%;
+    }
+}
+
 
 .parent-section section .parent-save article .parentThings .parentLines .moveAllLines span:nth-child(2){
     opacity: 0;
     visibility: hidden;
+    animation: moveLineEmpty .6s linear;
 }
 
+@keyframes moveLineEmpty{
+    0%{
+        transform: translate(0px, 0px) rotateZ(180deg);
+        width: 50%;
+    }30%{
+        transform: translate(5px, 5px);
+        width: 60%;
+    }
+    50%{
+        transform: translate(10px, 10px);
+        width: 70%;
+    }
+    70%{
+        transform: translate(15px, 15px);
+        width: 80%;
+    }
+    90%{
+        transform: translate(20px, 20px);
+        width: 100%;
+    }
+}
 
 .parent-section section .parent-save article .parentThings .parentLines .moveAllLines span:last-child{
     transform: rotateZ(-45deg) translate(13px, -15px);
     width: 80%;
+    animation: moveLineBottom;
+    animation-duration: .6s;
+    animation-timing-function: linear;
+}
+
+@keyframes moveLineBottom{
+    0%{
+        transform: translate(0px, 0px) rotateZ(180deg);
+        width: 30%;
+    }30%{
+        transform: translate(-5px, -5px);
+        width: 40%;
+    }
+    50%{
+        transform: translate(-10px, -10px);
+        width: 60%;
+    }
+    70%{
+        transform: translate(-15px, -15px);
+        width: 80%;
+    }
+    90%{
+        transform: translate(-20px, -20px);
+        width: 100%;
+    }
 }
 
 .parent-section section .parent-save article .deleteButton{
     display: none;
+}
+
+.parent-section section .parent-save article .parentThings .parentLines:hover{
+    background-color: lightblue;
+    border-radius: 50%;
+}
+
+.parent-section section .parent-save article .corazonLGTBI{
+    position: absolute;
+    bottom: 120px;
+    right: 160px;
+    height: 100px;
+    width: 100px;
+    z-index: 3;
+}
+
+.parent-section section .parent-save img:last-child:hover{
+    transform: rotateZ(360deg);
+    width: 50%;
 }
