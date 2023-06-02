@@ -32,6 +32,7 @@ async function reload(){
     try{
         const getData = await fetch(API_URL);
         const seeData = await getData.json();
+        console.log('Estas son las imagenes: ', seeData);
         urlOne = seeData[0].url
         urlTwo = seeData[1].url;
         seeData.forEach((el, i) => {
@@ -66,6 +67,7 @@ async function saveMichisFavourites(position){
     const div = document.createElement('div')
     const divTwo = document.createElement('div')
     const divParentLines = document.createElement('div')
+    const divParentImage = document.createElement('div')
     const spanOne = document.createElement('span')
     const spanTwo = document.createElement('span')
     const spanThree = document.createElement('span')
@@ -75,7 +77,7 @@ async function saveMichisFavourites(position){
     article.id = datasIdis[position].id
     div.setAttribute('class', 'parentThings')
     divTwo.setAttribute('class', 'parentLines')
-    article.appendChild(imageHeard)
+    divParentImage.setAttribute('class', 'parentImage')
 
 
     try{
@@ -89,7 +91,7 @@ async function saveMichisFavourites(position){
         const data = await request.json()
 
         parentDiv.appendChild(article)
-        article.appendChild(image)
+        article.appendChild(divParentImage)
         article.appendChild(div)
         div.appendChild(divTwo)
         // divTwo es el padre del div que es el padre de los span
@@ -98,6 +100,8 @@ async function saveMichisFavourites(position){
         divParentLines.appendChild(spanOne)
         divParentLines.appendChild(spanTwo)
         divParentLines.appendChild(spanThree)
+        divParentImage.appendChild(image)
+        divParentImage.appendChild(imageHeard)
 
         divTwo.addEventListener('mouseenter', () => {
             divParentLines.setAttribute('class', 'moveAllLines')

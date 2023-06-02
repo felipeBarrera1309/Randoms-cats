@@ -170,7 +170,7 @@ header{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    min-height: 400px;
+    min-height: 300px;
     gap: 10px;
 }
 
@@ -218,16 +218,17 @@ header{
 .parent-section section .button-reload  button:hover:before{
     opacity: 1;
 }
-
+/* Toda la parte de guardar a los gatos favoritos */
 .parent-section section .parent-save{
     max-height: 600px;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 40px;
 }
 
-.parent-section section .parent-save img{
+.parent-section section .parent-save article  img:nth-child(1){
     width: 400px;
     height: 400px;
     object-fit: cover;
@@ -236,7 +237,7 @@ header{
     cursor: pointer;
     position: relative;
 }
-.parent-section section .parent-save img::before{
+.parent-section section .parent-save article  img:nth-child(2)::before{
     content: '';
     position: absolute;
     height: 100%;
@@ -250,12 +251,49 @@ header{
     );
 }
 
-.parent-section section .parent-save img:hover{
+.parent-section section .parent-save article .parentImage{
+    width: 400px;
+    height: 400px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.parent-section section .parent-save article .parentImage img:nth-child(1){
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.parent-section section .parent-save article .parentImage:hover{
     transform:
         perspective(280px)
         rotateX(20deg)
-        translateY(-30px)
+        translateY(-60px)
     ;
+    cursor: pointer;
+}
+
+.parent-section section .parent-save article .parentImage::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    background-image:
+    linear-gradient(
+        to bottom,
+        transparent 10%,
+        rgba(0, 0, 0, 0.5) 45%,
+        rgba(0, 0, 0) 95%
+    );
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    z-index: 1;
+}
+
+.parent-section section .parent-save article .parentImage:hover::before{
+    opacity: 1;
 }
 
 .parent-section section .parent-save button{
@@ -276,6 +314,7 @@ header{
     gap: 20px;
     position: relative;
 }
+
 h2{
     font-size: 50px;
     text-align: center;
@@ -322,7 +361,7 @@ h2{
     transform: rotateZ(45deg) translate(10px, 10px);
     width: 80%;
     animation: moveLineTop;
-    animation-duration: .6s;
+    animation-duration: .4s;
     animation-timing-function: linear;
 }
 
@@ -381,7 +420,7 @@ h2{
     transform: rotateZ(-45deg) translate(13px, -15px);
     width: 80%;
     animation: moveLineBottom;
-    animation-duration: .6s;
+    animation-duration: .4s;
     animation-timing-function: linear;
 }
 
@@ -417,10 +456,17 @@ h2{
 }
 
 .parent-section section .parent-save article .corazonLGTBI{
-    position: absolute;
-    bottom: 120px;
-    right: 160px;
-    height: 100px;
-    width: 100px;
-    z-index: 3;
+    position: absolute;;
+    height: 120px;
+    width: 120px;
+    left: 35%;
+    top: 80%;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+    z-index: 2;
+}
+
+.parent-section section .parent-save article .parentImage:hover  .corazonLGTBI {
+    opacity: 1;
+    transform: translateY(-40px);
 }
