@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./fonts/fontello/css/fontello.css">
     <link rel="stylesheet" href="./cats.css" />
     <title>Imagenes de gatitos</title>
 </head>
@@ -21,6 +22,18 @@
             <div class="parent-images">
                 <img id="image1" alt="Gatito aletorio" />
                 <img id="image2" />
+            </div>
+            <div class="parent-form">
+                <h2>Select cats of my files</h2>
+                <form id="form-cats">
+                    <label for="file" id="label-file">
+                        add cats of my files
+                        <i class="icon-camera" ></i>
+                    </label>
+                    <input type="file" id="file" name="inputFile" style="display: none;" />
+                    <img id="image-file" />
+                    <button type="submit">Add cat my favorites</button>
+                </form>
             </div>
             <div class="button-reload">
                 <button id="button-reaload"><p>Reload images</p></button>
