@@ -457,8 +457,8 @@ h2{
 
 .parent-section section .parent-save article .corazonLGTBI{
     position: absolute;;
-    height: 120px;
-    width: 120px;
+    height: 150px;
+    width: 150px;
     left: 35%;
     top: 80%;
     opacity: 0;
@@ -468,5 +468,5 @@ h2{
 
 .parent-section section .parent-save article .parentImage:hover  .corazonLGTBI {
     opacity: 1;
-    transform: translateY(-40px);
+    transform: translateY(-120px);
 }
