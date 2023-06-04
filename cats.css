@@ -470,7 +470,7 @@ h2{
     transition: 0.3s ease-in-out;
 }
 
-.parent-section section .parent-save article .parentThings .parentLines .moveAllLines span:first-child{
+.parent-section section .parent-save article .parentThings .parentLines .moveAllLines:hover > span:first-child{
     transform: rotateZ(45deg) translate(10px, 10px);
     width: 80%;
     animation: moveLineTop;
@@ -501,7 +501,7 @@ h2{
 }
 
 
-.parent-section section .parent-save article .parentThings .parentLines .moveAllLines span:nth-child(2){
+.parent-section section .parent-save article .parentThings .parentLines .moveAllLines:hover > span:nth-child(2){
     opacity: 0;
     visibility: hidden;
     animation: moveLineEmpty .6s linear;
@@ -529,7 +529,7 @@ h2{
     }
 }
 
-.parent-section section .parent-save article .parentThings .parentLines .moveAllLines span:last-child{
+.parent-section section .parent-save article .parentThings .parentLines .moveAllLines:hover > span:last-child{
     transform: rotateZ(-45deg) translate(13px, -15px);
     width: 80%;
     animation: moveLineBottom;
