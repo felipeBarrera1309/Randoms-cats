@@ -27,7 +27,7 @@ body{
     animation: moveImage 6s infinite;
     padding: 40px 80px;
     overflow: auto;
-    min-width: 550px;
+    min-width: 950px;
     margin: 1px;
 }
 .parent-section section::-webkit-scrollbar{
@@ -110,21 +110,32 @@ header{
 .parent-section section .parent-form{
     display: flex;
     flex-direction: column;
-    gap: 10px;
     align-items: center;
+    height: 350px;
+}
+
+.parent-section section .parent-form .upload-image{
+    height: 100%;
+    animation: uploadImage .6s 1 ease-in-out;
+}
+
+@keyframes uploadImage{
+    from {
+        height: 0%;
+    }
 }
 
 .parent-section section .parent-form form{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 10px;
     max-width: 350px;
-    min-height: 200px;
+    min-width: 350px;
+    height: 100%;
 }
 .parent-section section .parent-form form label{
     display: flex;
     align-items: center;
+    justify-content: center;
     font-size: 20px;
     background-color: lightgray;
     padding: 10px;
@@ -136,20 +147,81 @@ header{
     font-size: 40px;
 }
 
-.parent-section section .parent-form form button{
-    height: 60px;
+.parent-section section .parent-form form .parent-button-file{
+    display: flex;
+    justify-content: space-between;
+}
+.parent-section section .parent-form form .parent-button-file button{
+    height: 50px;
+    font-size: 17px;
     border: none;
-    border-radius: 0px 0px 10px 10px;
-    font-size: 20px;
     cursor: pointer;
-    background-color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s ease-in-out;
+}
+.parent-section section .parent-form form .parent-button-file button i{
+    font-size: 0px;
+    color: red;
+    display: none;
+    transition: all .3s ease-in-out;
+    animation: ocultarCorazon .6s ease-in-out;
+}
+
+.parent-section section .parent-form form .parent-button-file button:nth-child(1){
+    width: 50%;
+    border-radius: 0 0 10px 10px;
+    transition: all .3s ease-in-out;
+}
+
+.parent-section section .parent-form form .parent-button-file button:nth-child(1):hover > i{
+    display: block;
+    animation: seeHeart .6s ease-in-out forwards;
+    transition: all .3s ease-in-out;
+}
+
+@keyframes seeHeart {
+    0%{
+        font-size: 5px;
+    }
+    50%{
+        font-size: 38px;
+    }
+    100%{
+        font-size: 30px;
+    }
+}
+
+.parent-section section .parent-form form .parent-button-file button:nth-child(2):hover > i{
+    display: block;
+    animation: seeHeartBroken .6s ease-in-out forwards;
+}
+
+@keyframes seeHeartBroken {
+    0%{
+        font-size: 5px;
+    }
+    50%{
+        font-size: 38px;
+    }
+    100%{
+        font-size: 30px;
+    }
+}
+
+.parent-section section .parent-form form .parent-button-file button:nth-child(2){
+    width: 45%;
+    border-radius: 0 0 10px 10px;
 }
 
 .parent-section section .parent-button{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
     padding: 0px 100px;
+    margin-bottom: 20px;
 }
 
 .parent-section section .parent-button button{
@@ -157,12 +229,15 @@ header{
     width: 170px;
     border: none;
     border-radius: 10px;
-    margin-bottom: 20px;
     background-color: #f9fa94;
     cursor: pointer;
     position: relative;
     padding: 0px 5px;
 }
+.parent-section section .parent-button h2{
+    width: 300px;
+}
+
 .parent-section section .parent-button button p{
     color: #78450c;
     position: relative;
@@ -207,15 +282,15 @@ header{
 .parent-section section .parent-images{
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    align-items: center;
     min-height: 300px;
     gap: 10px;
 }
 
-.parent-section section .parent-images img{
+.parent-section section .parent-images img:nth-child(1), img:last-child{
     border-radius: 10px;
-    width: clamp(100px, 40%, 350px);
-    height: clamp(100px, 20%, min(300px));
+    width: 350px;
+    height: 350px;
     object-fit: cover;
 }
 .parent-section section .button-reload{
