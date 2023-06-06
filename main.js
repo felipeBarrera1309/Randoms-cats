@@ -48,7 +48,7 @@ async function saveDatas(){
     const { data, status } = await api.get('/images/search?limit=2')
     imageOne.src = data[0].url
     imageTwo.src = data[1].url
-    localStorage.setItem('data', )
+    localStorage.setItem('data', JSON.stringify(data))
 }
 
 button.addEventListener('click', () => {
@@ -58,7 +58,15 @@ button.addEventListener('click', () => {
 
 // Funcion que guarda los gatos en favortos en la parte inferior
 function saveMichisFavourites(identify){
-        
+    const dataMichi = JSON.parse(localStorage.getItem('dataMichis')) ?? []
+    const getData = JSON.parse(localStorage.getItem('data'))
+    if(identify == 0){
+        dataMichi.push([...getData][identify])
+        localStorage.setItem('dataMichis', JSON.stringify(dataMichi))
+    }else{
+        dataMichi.push([...getData][identify])
+        localStorage.setItem('dataMichis', JSON.stringify(dataMichi))
+    }
 }
 
 // Funcion que elimina los gatitos
