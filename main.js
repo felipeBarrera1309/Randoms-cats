@@ -49,6 +49,9 @@ async function saveDatas(){
     imageOne.src = data[0].url
     imageTwo.src = data[1].url
     localStorage.setItem('data', JSON.stringify(data))
+    const dataMichi = JSON.parse(localStorage.getItem('dataMichis')) ?? []
+    showCatsWindow(dataMichi)
+    saveMichisFavourites()
 }
 
 button.addEventListener('click', () => {
@@ -61,12 +64,41 @@ function saveMichisFavourites(identify){
     const dataMichi = JSON.parse(localStorage.getItem('dataMichis')) ?? []
     const getData = JSON.parse(localStorage.getItem('data'))
     if(identify == 0){
-        dataMichi.push([...getData][identify])
+        if(dataMichi[identify]?.id !== getData[identify].id) {
+            dataMichi.push([...getData][identify])
+        }
         localStorage.setItem('dataMichis', JSON.stringify(dataMichi))
     }else{
-        dataMichi.push([...getData][identify])
+        if(dataMichi[identify]?.id !== getData[identify].id) {
+            dataMichi.push([...getData][identify])
+        }
         localStorage.setItem('dataMichis', JSON.stringify(dataMichi))
     }
+    showCatsWindow(dataMichi, identify)
+}
+
+function showCatsWindow(data, identify){
+    console.log('Este es la data trraida: ', data);
+    console.log('Este es el boton identificado: ', identify);
+    const getMichis = JSON.parse(localStorage.getItem('dataMichis'))
+
+    divParent.innerHTML += `
+        <article id="article-parent-images">
+            <div class="parentImage">
+                <img alt="" src='${url}' id="image-main" />
+                <img class="corazonLGTBI" src="https://3.bp.blogspot.com/-aLRVa2l51f4/WPAxwRMCR2I/AAAAAAAAJxU/0mRKWkmOSbY10GsUhKjDR3WRCt2x_FskgCLcB/s640/corazon-10.gif" alt="" />
+            </div>
+            <div class="parentThings">
+                <div class="parentLines">
+                    <div class="moveAllLines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    `
 }
 
 // Funcion que elimina los gatitos
