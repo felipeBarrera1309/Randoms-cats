@@ -46,7 +46,7 @@ const imageTwo = document.querySelector('#image2')
 const divParent = document.querySelector('.parent-save')
 
 async function saveDatas(){
-    const { data, status } = await api.get('/images/search?limit=2')
+    const { data } = await api.get('/images/search?limit=2')
     imageOne.src = data[0].url
     imageTwo.src = data[1].url
     localStorage.setItem('data', JSON.stringify(data))
@@ -76,20 +76,18 @@ function saveMichisFavourites(identify){
         localStorage.setItem('dataMichisOne', JSON.stringify(dataMichi))
     }
     saveCatsFavourties()
-    deleteCatFavourite = () => {
-    }
 }
 
 function saveCatsFavourties(){
     const getMichis = JSON.parse(localStorage.getItem('dataMichisOne'))
     let html = ""
     getMichis.forEach(el => {
-        const {url} = el
+        const {url, id} = el
         html += `
             <article id="article-parent-images" class='eventButton'>
             <div class="parentThings">
                     <div class="parentLines">
-                        <div class="moveAllLines">
+                        <div class="moveAllLines ${id}">
                             <span></span>
                             <span></span>
                             <span></span>
@@ -109,9 +107,11 @@ function saveCatsFavourties(){
 divParent.addEventListener('click', deleteCatFavourite)
 
 function deleteCatFavourite(e){
-    console.log('helouuuu');
     if(e.target.classList[0] === 'moveAllLines'){
-        console.log('Esto solo se ejecuta al dar click en el boton de eliminar');
+        let getDataMichis = JSON.parse(localStorage.getItem('dataMichisOne'))
+        getDataMichis = getDataMichis.filter(el => el.id !== e.target.classList[1])
+        localStorage.setItem('dataMichisOne', JSON.stringify(getDataMichis))
+        saveDatas()
     }
 }
 
