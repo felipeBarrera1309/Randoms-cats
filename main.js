@@ -111,7 +111,7 @@ function deleteCatFavourite(e){
         let getDataMichis = JSON.parse(localStorage.getItem('dataMichisOne'))
         getDataMichis = getDataMichis.filter(el => el.id !== e.target.classList[1])
         localStorage.setItem('dataMichisOne', JSON.stringify(getDataMichis))
-        saveDatas()
+        saveCatsFavourties()
     }
 }
 
@@ -133,6 +133,7 @@ async function addCatsFavourites(event){
 
 }
 const image = document.querySelector('#image-file')
+const parentButton = document.querySelector('#parent-button-file')
 
 inputFile.addEventListener('change', (e) => {
     const imageBinary = e.target.files[0]
@@ -141,6 +142,10 @@ inputFile.addEventListener('change', (e) => {
     base64.onload = function(e){
         const lectorImage = e.target.result;
         image.src = lectorImage
+        if(image.getAttribute('src')){
+            parentButton.classList.remove('identificar-parent-button')
+            parentButton.classList.add('button-hidden')
+        }
     }
     if(e.target.files[0].name){
         image.setAttribute('class', 'upload-image')
@@ -158,8 +163,19 @@ function addCat(value){
             url: image.getAttribute('src')
         })
         localStorage.setItem('dataMichisOne', JSON.stringify(getDataMichi))
-        image.src = ''
+        if(image.getAttribute('src')){
+            parentButton.classList.remove('button-hidden')
+            parentButton.classList.add('identificar-parent-button')
+            image.src = ''
+        }
         image.classList = ''
-        saveDatas()
+        saveCatsFavourties()
+    }
+    if(value == 1){
+        if(image.getAttribute('src')){
+            parentButton.classList.remove('button-hidden')
+            parentButton.classList.add('identificar-parent-button')
+            image.src = ''
+        }
     }
 }

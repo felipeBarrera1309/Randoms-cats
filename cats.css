@@ -151,12 +151,16 @@ header{
     font-size: 40px;
 }
 
-.parent-section section .parent-form form .parent-button-file{
+.parent-section section .parent-form form .identificar-parent-button{
     display: flex;
     justify-content: space-between;
+    opacity: 0;
+    transition: .3s ease-in-out;
 }
 
-.parent-section section .parent-form form .parent-button-file{
+.parent-section section .parent-form form .button-hidden{
+    display: flex;
+    justify-content: space-between;
     opacity: 1;
     transition: .3s ease-in-out;
 }
