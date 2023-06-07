@@ -39,6 +39,8 @@ const claseOne = 'parentLines'
 
 window.addEventListener('DOMContentLoaded', saveDatas)
 
+button.onclick = saveDatas
+
 const imageOne = document.querySelector('#image1')
 const imageTwo = document.querySelector('#image2')
 const divParent = document.querySelector('.parent-save')
@@ -48,6 +50,37 @@ async function saveDatas(){
     imageOne.src = data[0].url
     imageTwo.src = data[1].url
     localStorage.setItem('data', JSON.stringify(data))
+    saveCatsFavourties()
+}
+
+button.addEventListener('click', () => {
+
+})
+// Aqui se ejecuta la funcion que trae la informacion
+
+// Funcion que guarda los gatos en favortos en la parte inferior
+function saveMichisFavourites(identify){
+    let getData = JSON.parse(localStorage.getItem('data'))
+    let dataMichi = JSON.parse(localStorage.getItem('dataMichisOne')) ?? []
+    if(identify == 0){
+        if( dataMichi.some(el => el.id === getData[identify].id ) )return
+        else{
+            dataMichi.unshift(getData.find((el, i) => i === identify))
+        }
+        localStorage.setItem('dataMichisOne', JSON.stringify(dataMichi))
+    }else{
+        if( dataMichi.some(el => el.id === getData[identify].id ) )return
+        else{
+            dataMichi.unshift(getData.find((el, i) => i === identify))
+        }
+        localStorage.setItem('dataMichisOne', JSON.stringify(dataMichi))
+    }
+    saveCatsFavourties()
+    deleteCatFavourite = () => {
+    }
+}
+
+function saveCatsFavourties(){
     const getMichis = JSON.parse(localStorage.getItem('dataMichisOne'))
     let html = ""
     getMichis.forEach(el => {
@@ -73,37 +106,14 @@ async function saveDatas(){
     divParent.innerHTML = html
 }
 
-button.addEventListener('click', () => {
+divParent.addEventListener('click', deleteCatFavourite)
 
-})
-// Aqui se ejecuta la funcion que trae la informacion
-
-// Funcion que guarda los gatos en favortos en la parte inferior
-function saveMichisFavourites(identify){
-    let getData = JSON.parse(localStorage.getItem('data'))
-    let dataMichi = JSON.parse(localStorage.getItem('dataMichisOne')) ?? []
-    if(identify == 0){
-        if( dataMichi.some(el => el.id !== getData[identify].id ) ){
-            dataMichi.unshift(getData.find((el, i) => i === identify))
-        }else{
-            dataMichi.unshift(getData.find((el, i) => i === identify))
-        }
-        localStorage.setItem('dataMichisOne', JSON.stringify(dataMichi))
-    }else{
-        if( dataMichi.some(el => el.id === getData[identify].id ) ){
-            dataMichi.unshift(getData.find((el, i) => i === identify))
-        }else{
-            dataMichi.unshift(getData.find((el, i) => i === identify))
-        }
-        localStorage.setItem('dataMichisOne', JSON.stringify(dataMichi))
+function deleteCatFavourite(e){
+    console.log('helouuuu');
+    if(e.target.classList[0] === 'moveAllLines'){
+        console.log('Esto solo se ejecuta al dar click en el boton de eliminar');
     }
-    saveDatas()
 }
-
-divParent.addEventListener('click', (e) =>{
-    console.log('askdjksajdksdajkladjl', e.target);
-    
-})
 
 // Funcion que elimina los gatitos
 
