@@ -114,6 +114,14 @@ header{
     height: 350px;
 }
 
+.parent-section section .parent-form form{
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    min-width: 350px;
+    height: 100%;
+}
+
 .parent-section section .parent-form .upload-image{
     height: 100%;
     animation: uploadImage .6s 1 ease-in-out;
@@ -125,12 +133,8 @@ header{
     }
 }
 
-.parent-section section .parent-form form{
-    display: flex;
-    flex-direction: column;
-    max-width: 350px;
-    min-width: 350px;
-    height: 100%;
+.parent-section section .parent-form form img{
+    transition: 0.3s ease-in-out;
 }
 .parent-section section .parent-form form label{
     display: flex;
@@ -151,6 +155,12 @@ header{
     display: flex;
     justify-content: space-between;
 }
+
+.parent-section section .parent-form form .parent-button-file{
+    opacity: 1;
+    transition: .3s ease-in-out;
+}
+
 .parent-section section .parent-form form .parent-button-file button{
     height: 50px;
     font-size: 17px;

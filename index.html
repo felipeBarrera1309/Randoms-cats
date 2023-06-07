@@ -27,15 +27,15 @@
                         <label for="file" id="label-file">
                             add cats of my files
                             <i class="icon-camera" ></i>
+                            <input type="file" id="file" name="inputFile" style="display: none;" />
                         </label>
-                        <input type="file" id="file" name="inputFile" style="display: none;" />
                         <img id="image-file" />
                         <div class="parent-button-file">
-                            <button id="button-action-one" type="submit">
+                            <button onclick="addCat(0)" id="button-action-one" type="submit">
                                 Add favorites
                                 <i class="icon-heart"></i>
                             </button>
-                            <button id="button-action-two" type="button">
+                            <button onclick="addCat(1)" id="button-action-two" type="button">
                                 Delete cat
                                 <i class="icon-heart-broken"></i>
                             </button>

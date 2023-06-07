@@ -132,9 +132,6 @@ async function addCatsFavourites(event){
     }
 
 }
-
-const buttonOne = document.querySelector('#button-action-one')
-const buttonTwo = document.querySelector('#button-action-two')
 const image = document.querySelector('#image-file')
 
 inputFile.addEventListener('change', (e) => {
@@ -153,6 +150,16 @@ inputFile.addEventListener('change', (e) => {
     base64.readAsDataURL(imageBinary)
 })
 
-buttonTwo.addEventListener('click', () => {
-    
-})
+function addCat(value){
+    let getDataMichi = JSON.parse(localStorage.getItem('dataMichisOne')) ?? []
+    if(value === 0){
+        getDataMichi.unshift({
+            id: (image.getAttribute('src') +'blablabla'),
+            url: image.getAttribute('src')
+        })
+        localStorage.setItem('dataMichisOne', JSON.stringify(getDataMichi))
+        image.src = ''
+        image.classList = ''
+        saveDatas()
+    }
+}
