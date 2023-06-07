@@ -29,12 +29,10 @@ let datasIdis = {
     1: { id: null, url: null },
 }
 
-const saveDataMichisSix = [
+const saveDataMichisOneSix = [
     {id: "35e", url: "https://cdn2.thecatapi.com/images/35e.jpg", width: 1024, height: 791},
     {id: "4ia", url: "https://cdn2.thecatapi.com/images/4ia.gif", width: 500, height: 211},
 ]
-
-const divParent = document.querySelector('.parent-save')
 
 
 const claseOne = 'parentLines'
@@ -43,14 +41,36 @@ window.addEventListener('DOMContentLoaded', saveDatas)
 
 const imageOne = document.querySelector('#image1')
 const imageTwo = document.querySelector('#image2')
+const divParent = document.querySelector('.parent-save')
 
 async function saveDatas(){
     const { data, status } = await api.get('/images/search?limit=2')
     imageOne.src = data[0].url
     imageTwo.src = data[1].url
     localStorage.setItem('data', JSON.stringify(data))
-    const dataMichi = JSON.parse(localStorage.getItem('dataMichis')) ?? []
-    saveMichisFavourites()
+    const getMichis = JSON.parse(localStorage.getItem('dataMichisOne'))
+    let html = ""
+    getMichis.forEach(el => {
+        const {url} = el
+        html += `
+            <article id="article-parent-images" class='eventButton'>
+            <div class="parentThings">
+                    <div class="parentLines">
+                        <div class="moveAllLines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="parentImage">
+                    <img alt="" src='${url}' id="image-main" />
+                    <img class="corazonLGTBI" src="https://3.bp.blogspot.com/-aLRVa2l51f4/WPAxwRMCR2I/AAAAAAAAJxU/0mRKWkmOSbY10GsUhKjDR3WRCt2x_FskgCLcB/s640/corazon-10.gif" alt="" />
+                </div>
+            </article>
+        `
+    })
+    divParent.innerHTML = html
 }
 
 button.addEventListener('click', () => {
@@ -60,43 +80,30 @@ button.addEventListener('click', () => {
 
 // Funcion que guarda los gatos en favortos en la parte inferior
 function saveMichisFavourites(identify){
-    const dataMichi = JSON.parse(localStorage.getItem('dataMichis')) ?? []
-    const getData = JSON.parse(localStorage.getItem('data'))
-    if(dataMichi[identify]?.id == getData[identify].id)return
+    let getData = JSON.parse(localStorage.getItem('data'))
+    let dataMichi = JSON.parse(localStorage.getItem('dataMichisOne')) ?? []
     if(identify == 0){
-        dataMichi.push( {...[...getData][identify]} )
-        localStorage.setItem('dataMichis', JSON.stringify(dataMichi))
+        if( dataMichi.some(el => el.id !== getData[identify].id ) ){
+            dataMichi.unshift(getData.find((el, i) => i === identify))
+        }else{
+            dataMichi.unshift(getData.find((el, i) => i === identify))
+        }
+        localStorage.setItem('dataMichisOne', JSON.stringify(dataMichi))
     }else{
-        dataMichi.push([...getData][identify])
-        localStorage.setItem('dataMichis', JSON.stringify(dataMichi))
+        if( dataMichi.some(el => el.id === getData[identify].id ) ){
+            dataMichi.unshift(getData.find((el, i) => i === identify))
+        }else{
+            dataMichi.unshift(getData.find((el, i) => i === identify))
+        }
+        localStorage.setItem('dataMichisOne', JSON.stringify(dataMichi))
     }
-    showCatsWindow()
+    saveDatas()
 }
 
-function showCatsWindow(){
-    const getMichis = JSON.parse(localStorage.getItem('dataMichis'))
-    const getData = JSON.parse(localStorage.getItem('data'))
-    getMichis.forEach(el => {
-        divParent.innerHTML += `
-            <article id="article-parent-images">
-                <div class="parentImage">
-                    <img alt="" src='${el.url}' id="image-main" />
-                    <img class="corazonLGTBI" src="https://3.bp.blogspot.com/-aLRVa2l51f4/WPAxwRMCR2I/AAAAAAAAJxU/0mRKWkmOSbY10GsUhKjDR3WRCt2x_FskgCLcB/s640/corazon-10.gif" alt="" />
-                </div>
-                <div class="parentThings">
-                    <div class="parentLines">
-                        <div class="moveAllLines">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        `
-    })
-
-}
+divParent.addEventListener('click', (e) =>{
+    console.log('askdjksajdksdajkladjl', e.target);
+    
+})
 
 // Funcion que elimina los gatitos
 
